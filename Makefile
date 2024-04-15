@@ -12,7 +12,7 @@ clean:
 
 release: clean
 	poetry build
-	poetry publish
+	#poetry publish
 
 ruff:
 	ruff check .
