@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "mackup"
-version = "0.8.41-dev"
+version = "0.8.41-dev1"
 description = "Keep your application settings in sync (macOS/Linux)"
 authors = ["Laurent Raufaste <analogue@glop.org>"]
 license = "GPLv3"
