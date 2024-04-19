@@ -148,7 +148,7 @@ def main():
 
             for app_name in sorted(app_names):
                 app = ApplicationProfile(
-                    mckp, app_db.get_files(app_name), dry_run, verbose
+                    mckp, app_db.get_files(app_name), dry_run, verbose, copy_only
                 )
                 printAppHeader(app_name)
                 app.uninstall()
@@ -156,7 +156,7 @@ def main():
             # Restore the Mackup config before any other config, as we might
             # need it to know about custom settings
             mackup_app = ApplicationProfile(
-                mckp, app_db.get_files(MACKUP_APP_NAME), dry_run, verbose
+                mckp, app_db.get_files(MACKUP_APP_NAME), dry_run, verbose, copy_only
             )
             mackup_app.uninstall()
 
