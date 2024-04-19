@@ -10,9 +10,11 @@ clean:
 	rm -rf tests/__pycache__
 	rm -rf dist/
 
-release: clean
+build: clean
 	poetry build
-	#poetry publish
+
+release: build
+	poetry publish
 
 ruff:
 	ruff check .
