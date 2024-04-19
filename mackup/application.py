@@ -164,6 +164,37 @@ class ApplicationProfile(object):
             file_or_dir_exists = os.path.isfile(mackup_filepath) or os.path.isdir(
                 mackup_filepath
             )
+
+            if self.copy_only:
+                # If the mackup file exists
+                if os.path.isfile(mackup_filepath) or os.path.isdir(mackup_filepath):
+                    # Check if there is a corresponding file in the home folder
+                    if os.path.exists(home_filepath):
+                        if self.verbose:
+                            print(
+                                "Restoring {}\n  at {} ...".format(
+                                    mackup_filepath, home_filepath
+                                )
+                            )
+                        else:
+                            print("Restoring {} ...".format(filename))
+
+                    if self.dry_run:
+                        continue
+
+
+                    # If there is, delete it as we are gonna copy the Dropbox
+                    # one there
+                    if os.path.exists(home_filepath):
+                        utils.delete(home_filepath)
+
+                    # Copy the Dropbox file to the home folder
+                    utils.copy(mackup_filepath, home_filepath)
+                elif self.verbose:
+                    print("Doing nothing, {} does not exist".format(mackup_filepath))
+                continue
+
+
             pointing_to_mackup = (
                 os.path.islink(home_filepath)
                 and os.path.exists(mackup_filepath)
